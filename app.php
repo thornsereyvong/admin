@@ -21,13 +21,14 @@
 	}
 	
 	
-	define("SQL_DSN", 'mysql:dbname=zobenz_db;host=localhost');
-	define("SQL_USERNAME", 'root');
-	define("SQL_PASSWORD", '');
+	
 	
 	
 	include_once 'Untility/DBConnection.php';
-	include_once 'Untility/Component.php';
+	//include_once 'Untility/Component.php';
+	include_once 'Model/Cryption.php';
+	include_once 'Model/user/User.DAO.php';
+	
 	
 	$server = "http://localhost/Z-Admin/";
 	
