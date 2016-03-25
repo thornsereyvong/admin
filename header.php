@@ -36,7 +36,7 @@ include_once 'check_account.php';
 							<li class="user-header"><img src="img/avatar_m.png"
 								class="img-circle" alt="User Image">
 								<p>
-									<?php //echo $_SESSION['AME_USERNAME'].' - '.$_SESSION['AME_USERTYPE'];?><small></small>
+									<?php echo $_SESSION['ZOBENZ_USER'].' - '.$_SESSION['ZOBENZ_USER_ROLE'];?><small></small>
 								</p></li>
 							<li class="user-footer">
 								<div class="pull-left">
