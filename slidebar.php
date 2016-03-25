@@ -12,12 +12,12 @@
 		
 	$menu_report = array(
 			            'Article'=>array(
-	            		     'new-article'=>'New Article',
-	            		     'list-articles'=>'List Articles'
+	            		     'new-article' => 'New Article',
+	            		     'list-articles' => 'List Articles'
                         ),
 						'Category'=>array(
-							 'new-category'=>'New Category',
-							 'list-categories'=>'List Category'
+							 'new-category' => 'New Category',
+							 'list-categories' => 'List Category'
 						)
 	);
 
