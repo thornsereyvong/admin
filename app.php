@@ -29,6 +29,6 @@
 	include_once 'Untility/DBConnection.php';
 	include_once 'Untility/Component.php';
 	
-	$server = "http://localhost/ZOBENZ-ADMIN/";
+	$server = "http://localhost/Z-Admin/";
 	
 ?>
