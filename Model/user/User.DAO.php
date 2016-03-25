@@ -2,16 +2,17 @@
 	class User{
 		public function login($email,$password){
 			try{
+				session_start();
 				$dbh = DBConnection::getInstance();
 				$sql = "
-						 SELECT * FROM z_users WHERE Email = :email AND Password = :password
-					   ";
+						 SELECT * FROM z_users WHERE Email = :email AND Password = :password; 
+					   ";	
+				$password = (new Cryption())->IMD5($password);
 				$req = $dbh->prepare($sql);
 				$req->bindParam(":email", $email);
 				$req->bindParam(":password", $password);
 				$req->execute();
-				$num = $req->rowCount();
-				if($num != 0){
+				if($req->rowCount() != 0){
 					$rows = $req->fetch(PDO::FETCH_ASSOC);
 					$_SESSION['ZOBENZ_USERID'] = $rows['UserID'];
 					$_SESSION['ZOBENZ_USER'] = $rows['Username'];
@@ -25,43 +26,43 @@
 				echo "Error";
 			}
 		}
-		public function register($username,$password,$email){
+		public function register($data){
 			try{
 				$dbh = DBConnection::getInstance();
-				$sql = "
-						 INSERT INTO tbluser(Username,Password,Email,code) VALUES(:username,:password,:email,:code);
-					   ";
-				$code = $this->generateCode();
-				$password = $cryption->IMD5($password);
+				$sql = "INSERT INTO z_users(Username, Full_Name,Description,Email, Password, Img, Type, Role ) 
+						             VALUES(:username, :fullname, :description, :email, :passwd, :img, :type, :role);";
+				$passwd = (new Cryption())->IMD5($data['password']);
 				$req = $dbh->prepare($sql);
-				$req->bindParam(":username", $username);
-				$req->bindParam(":password", $password);
-				$req->bindParam(":email", $email);
-				$req->bindParam(":code", $code);
+				$req->bindParam(":username", $data['username']);
+				$req->bindParam(":passwd", $passwd);
+				$req->bindParam(":email", $data['email']);
+				$req->bindParam(":fullname", $data['fullname']);
+				$req->bindParam(":description", $data['description']);
+				$req->bindParam(":role", $data['role']);
+				$req->bindParam(":type", $data['type']);
+				$req->bindParam(":img", $data['img']);
 				$req->execute();
 				$num = $req->rowCount();
 				if($num != 0){
-					$_SESSION['C_USERID'] = $dbh->lastInsertId();
-					
 					echo "success";
 				}else{
-					echo "Error";
+					echo "1";
 				}
 				$req->closeCursor();
 			}catch(PDOException $e){
+				
 				echo "Error";
 			}
 		}
 		
 		public function active($dbh,$userid){
 			try{
-				$sql = "UPDATE tbluser SET active = 1-active WHERE UID=:userid;";
+				$sql = "UPDATE z_users SET Active = 1-Active WHERE UserID=:userid;";
 				$req = $dbh->prepare($sql);
 				$req->bindParam(":userid", $userid);
 				$req->execute();
 				$num = $req->rowCount();
 				if($num != 0){
-					$_SESSION['C_STATUS'] = 1;
 					return true;
 				}else{
 					return false;
@@ -105,3 +106,4 @@
 			return true;
 		}
 	}
+	$user  = new User();
