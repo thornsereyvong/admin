@@ -2,8 +2,8 @@
 	/* * *****************************************************************************
 	 * file: Cryption.php
 	 * @autor: Thorn sereyvong
-	 * @date: 07-09-2015
-	 * Balancika co.,ltd
+	 * @date: 25-03-2015
+	 * ZOBENZ TEAM
 	 * Description: For Encrypt and Descrypt data 
 	 * ***************************************************************************** */
 	Class Cryption{
@@ -13,7 +13,7 @@
 		private $iv;
 		
 		public function __construct(){
-			$this->key = base64_encode("AME@Balancika.com");
+			$this->key = base64_encode("zobenz@vong");
 			$this->key_size = strlen($this->key);
 			$this->iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
 			$this->iv = mcrypt_create_iv($this->iv_size, MCRYPT_RAND);
