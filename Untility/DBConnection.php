@@ -1,6 +1,11 @@
 <?php
+define("SQL_DSN", 'mysql:dbname=zobenz_db;host=localhost');
+define("SQL_USERNAME", 'root');
+define("SQL_PASSWORD", '');
+
 class DBConnection extends PDO {
 	private static $_instance;
+
 	public function __construct( ){}
 
 	public static function getInstance() {
