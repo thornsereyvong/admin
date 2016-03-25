@@ -13,6 +13,20 @@
 $title = "LOGIN ACCOUNT";
 include_once 'head.php';
 
+
+/* $data = array();
+$data['username'] = "sereyvong";
+$data['fullname'] = "sereyvong thorn";
+$data['password'] = "111";
+$data['email'] = "sereyvong98@gmail.com";
+$data['role'] = "admin";
+$data['type'] = "Author";
+$data['img'] = "";
+$data['Description'] = "";
+
+
+$user->register($data);
+ */
 ?>
 <br/>
 <div class="container">
@@ -68,6 +82,7 @@ include_once 'head.php';
 		</div>
 	</div>
 </div>
+<div id="d"></div>
 <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <script src="bootstrap/js/jquery-ui.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -77,7 +92,7 @@ include_once 'head.php';
 <script type="text/javascript">
 	function error(){
 		$("#inv").show();
-		$("#username").parent().removeClass("has-success").addClass("has-error");
+		$("#email").parent().removeClass("has-success").addClass("has-error");
 		$("#password").parent().removeClass("has-success").addClass("has-error");
 	}
 
@@ -113,23 +128,21 @@ include_once 'head.php';
 				}
 		
 			}
-		}).on('success.form.bv', function(e) {	
-			alert();			
-			/* $.ajax({
+		}).on('success.form.bv', function(e) {			
+			$.ajax({
 				url: "login-controller",
 				method: "POST",
 				data: {
-					username : $.trim($("#username").val()),
-					password : $.trim($("#password").val()),
-					company : $.trim($("#company").val())
+					email : $.trim($("#email").val()),
+					password : $.trim($("#password").val())
 				},success: function(data){
 					if(data=="success"){
-						window.location.href="<?php // echo $server;?>WEB_REPORT"; 	
+						window.location.href="<?php echo $server;?>dashboard";
 					}else{
 						error();
 					}
 				}
-			});*/
+			});
 		});
 	});
 </script>
