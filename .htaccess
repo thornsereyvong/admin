@@ -96,8 +96,8 @@ RewriteRule ^dashboard$ index.php
 
 RewriteRule ^list-articles$ article_list.php
 RewriteRule ^new-article$ article_new.php
-
-
+RewriteRule ^controller-upload-image$ controller/upload_image_controller.php
+RewriteRule ^controller-list-images$ controller/list_all_image_controller.php
 
 RewriteRule ^controller-new-article$ controller/article/new-article_controller.php
 RewriteRule ^controller-list-articles$ controller/article/list_articles_controller.php

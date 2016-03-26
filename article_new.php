@@ -45,6 +45,7 @@ include_once 'slidebar.php';
 			</div>
 			<!-- Start Form -->
 			<div class="col-md-9 col-sm-12">
+
 				<div class="box box-solid">
 					<div class="box-header with-border">
 						<i class="fa fa-info-circle"></i>
@@ -106,6 +107,13 @@ include_once 'slidebar.php';
 						<h3 class="box-title">Image Controll</h3>
 					</div>
 					<div class="box-body">
+						<div class="col-md-12 col-sm-12" id="showImgChoose" style="display: none;">
+							<div class="col-sm-3"></div>
+							<div class="col-sm-6">
+								<a href="#" class="thumbnail"> <img src="img/profile.jpg" width="100%" /></a>
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
 						<div class="col-md-12 col-sm-12  text-center">
 							<a class="btn btn-app" id="browse"> <i class="fa fa-photo"></i>
 								Add To Text
@@ -165,6 +173,7 @@ include_once 'slidebar.php';
 
 			</div>
 		</div>
+		<div id="errors"></div>
 	</section>
 </div>
 
@@ -179,8 +188,9 @@ include_once 'slidebar.php';
 			</div>
 			<div class="modal-body">
 				<div class="col-sm-6">
-					<form id="frm_upload_img" action="" style="display:none;">
+					<form id="frm_upload_img" enctype="multipart/form-data" action="" method="post" style="display:none;">
 						<input accept="image/*" type="file" name="img_upload" id="inp_img"> 
+						<input name="type" type="text" value="article">
 					</form>
 								
 					<a class="btn btn-app" id="browse_img"> <i class="fa fa-photo"></i>
@@ -188,19 +198,20 @@ include_once 'slidebar.php';
 					</a>
 				</div>
 				<div class="col-sm-6">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search...">
-					</div>
+					<div class="input-group">
+                      <input type="text" name="message" id="searchImg" class="form-control" placeholder="Search...">
+                      <span class="input-group-btn">
+                        <button type="button" id="btnSearch" class="btn btn-success btn-flat">Search</button>
+                      </span>
+                    </div>
+					
+					
 				</div>
 				<div class="col-sm-12">
 					<hr />
 				</div>
-				<div class="col-sm-12">
-					<?php for($i=0; $i<12 ; $i++){?>
-					<div class="col-sm-2">
-						<a href="#" class="thumbnail"> <img src="img/profile.jpg" width="100%" /></a>
-					</div>
-					<?php } ?>
+				<div class="col-sm-12" id="listItem">
+			
 				</div>
 				<div class="clearfix"></div>
 				<div class="col-sm-12">
@@ -236,7 +247,7 @@ include_once 'slidebar.php';
 				</button>
 			</div>
 		</div>
-
+	
 	</div>
 </div>
 
@@ -250,23 +261,161 @@ include_once 'slidebar.php';
 <script src="bootstrap/js/jquery.form.js"></script>
 
 <script>
-	$(function () {
-        CKEDITOR.replace('editor1');
+	var data = new Array();
+	var oldData = new Array();
+	var dataSearch = new Array();
+	var curpage = 1;
+	var perpage = 12;
+	var search = false;
+	function addThumbnail(filename){
+		$("#showImgChoose").show();
+		$("#showImgChoose").find($('img')).attr("src",'<?= $server ?>'+filename);
+	}
+	function callListImg(){
+		data = JSON.parse($.ajax({
+			url: "controller-list-images",
+			method: "POST",
+			async: false,
+			data: {
+			}
+		}).responseText);
+	}
+	function item(data){
+		return '<div class="col-sm-2"><a href="#" class="thumbnail"> <img src="<?=$server?>'+data.Location+'" style="width:100px; height:100px;" /></a></div>';
+	}
+	function previous(){
+		curpage = Number(curpage);
+		listItem(data,curpage-1,null);
+	}
+	function next(){
+		curpage = Number(curpage);
+		listItem(data,curpage+1,null);
+	}
+	function goPage(){
+		listItem(data,$("#pagenum").val(),null);
+	}
+	function clearPage(){
+		$("#pagination").empty();
+	}
+	function pageDetail(currentPage,totalPage){
+		$("#currentPage").text(currentPage);
+		$("#totalPage").text(totalPage);
+	}
+	function paginations(totalpage,page){
+		clearPage();
+		$("#pagenum").val(page);
+		pageDetail(page,totalpage);
+	}
 
+	function clearListItem(){
+		$("#listItem").empty();  
+	}
+	function listItem(data,page){
+		oldData = data;
+		
+		if(search){
+			data = dataSearch;
+		}else{
+			data = oldData; 
+		}
+		
+		
+		clearListItem();
+		curpage = page;
+		var c = data.length;
+		var totalpage = Math.ceil(c/perpage);
+		if(page>0 && page<=totalpage){
+			var start = (page-1)*perpage;
+			var end = page*perpage;
+			
+			if(end>c){
+				end = c;
+			}
+			
+			if(page == 1){
+				$("#pre").prop('disabled', true);
+			}else{
+				$("#pre").prop('disabled', false);
+			}
+
+			if(page == totalpage){
+				$("#nex").prop('disabled', true);
+			}else{
+				$("#nex").prop('disabled', false);
+			}
+			var str ="";
+			var active = 0;
+			for(i=start;i<end;i++){
+				str += item(data[i]);
+			}			
+		}
+		$("#listItem").append(str);
+		paginations(totalpage,curpage);
+	}
+	
+	$(function (){
+        CKEDITOR.replace('editor1');
     	$("#choose").click(function(){
     		// img = "<img src='img/profile.jpg'/>'";
     		// CKEDITOR.instances.editor1.insertHtml(img);
     		$("#show_img").click();
+    		callListImg();	
+			if(data.length>0){
+				listItem(data,1);
+    		}
 	   	});	
 
     	$("#browse_img").click(function(){
-			$("#inp_img").click();
+			$("#inp_img").click();			
     	});
 
     	$("#inp_img").change(function(){
-			alert();
-    		
+			var formData = new FormData($("#frm_upload_img")[0]);
+			$.ajax({
+				url : 'controller-upload-image',
+				type : 'POST',
+				data : formData,
+				async : false,
+				cache : false,
+				contentType : false,
+				processData : false,
+				success : function(result) {
+					if(result=='success'){
+						//addThumbnail('img/profile.jpg');
+						$("#searchImg").val("");
+						search = false;
+						callListImg();	
+						if(data.length>0){
+							listItem(data,1);
+			    		}
+					}
+				},
+				error : function() {
+					//alert(0);
+				}
+			}); 
         });
+    	$("#btnSearch").click(function(){
+    		dataSearch = [];
+			search = true;
+    		var searchTxt = $.trim($("#searchImg").val());
+        	if(searchTxt != ''){
+        		for(var i=0; i<data.length; i++){
+        			if((data[i].File_Name).indexOf(searchTxt) != -1 || (data[i].Type).indexOf(searchTxt) != -1)
+        			{
+        				dataSearch.push(data[i]); 
+        			}
+    			}
+        	}else{
+        		search = false;
+        	}
+
+        	listItem(data,1);
+			
+        });
+		
+		
+
 		
     	/* var fd = new FormData();    
     	fd.append( 'file', input.files[0] );
