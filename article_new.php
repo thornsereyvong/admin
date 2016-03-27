@@ -173,7 +173,7 @@ include_once 'slidebar.php';
 
 			</div>
 		</div>
-		<div id="errors"></div>
+		<div id="errors" style="boder:none;"></div>
 	</section>
 </div>
 
@@ -241,7 +241,7 @@ include_once 'slidebar.php';
 					class="btn btn-danger">
 					<i class="fa   fa-times-circle"></i> &nbsp;Delete
 				</button>
-				<button type="submit" name="btnsearch" id="btnsearch"
+				<button type="submit" name="btnAddImg" id="btnAddImg"
 					class="btn btn-info pull-right">
 					<i class="fa  fa-plus-circle"></i> &nbsp;Add
 				</button>
@@ -267,6 +267,27 @@ include_once 'slidebar.php';
 	var curpage = 1;
 	var perpage = 12;
 	var search = false;
+	var name_img="";
+	var id_img = "errors";
+	
+	function selectImg(name,img){
+		//alert(0)
+		//$("#"+id_img).css('border', '1px solid #ddd');
+		name_img = name;
+		id_img = img;
+		//$("#"+id_img).css('border', '1px solid red');
+	}
+
+	function checkImgSelected(){
+
+		//alert($("#"+id_img).css('border'));
+		
+		if($("#"+id_img).css('border') != '1px solid rgb(177, 195, 211)'){
+			return false;
+		}
+		return true;
+	}
+	
 	function addThumbnail(filename){
 		$("#showImgChoose").show();
 		$("#showImgChoose").find($('img')).attr("src",'<?= $server ?>'+filename);
@@ -280,8 +301,9 @@ include_once 'slidebar.php';
 			}
 		}).responseText);
 	}
+	//border: 1px solid #E63838;
 	function item(data){
-		return '<div class="col-sm-2"><a href="#" class="thumbnail"> <img src="<?=$server?>'+data.Location+'" style="width:100px; height:100px;" /></a></div>';
+		return '<div class="col-sm-2"><a id="img'+data.FileID+'" style="" onclick="selectImg(\'<?=$server?>'+data.Location+'\', \'img'+data.FileID+'\')" href="#" class="thumbnail"> <img src="<?=$server?>'+data.Location+'" style="width:100px; height:100px;" /></a></div>';
 	}
 	function previous(){
 		curpage = Number(curpage);
@@ -355,6 +377,9 @@ include_once 'slidebar.php';
 	
 	$(function (){
         CKEDITOR.replace('editor1');
+
+       
+        
     	$("#choose").click(function(){
     		// img = "<img src='img/profile.jpg'/>'";
     		// CKEDITOR.instances.editor1.insertHtml(img);
@@ -414,7 +439,10 @@ include_once 'slidebar.php';
 			
         });
 		
-		
+    	$("#btnAddImg").click(function(){
+			//alert(name_img);
+			checkImgSelected();
+        });
 
 		
     	/* var fd = new FormData();    
