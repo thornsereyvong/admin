@@ -8,14 +8,11 @@
  * *****************************************************************************
  */ 
 	include_once 'app.php';
-	
 ?>
-<!DOCTYPE html>
-<html>
-	<head>
+
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ZOBENZ | <?php echo $title; ?></title> 
+	<title><?php echo $title; ?> | ZOBENZ</title> 
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="shortcut icon" href="img/favicon.png">
 	
@@ -38,4 +35,4 @@
 	<link rel="stylesheet" href="bootstrap/css/my-style.css">
 	<!-- <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css"> -->
 	
-	</head>
+	

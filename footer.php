@@ -8,15 +8,7 @@
  * *****************************************************************************
  */
 ?>
-		<footer class="main-footer">
-			<div class="pull-right hidden-xs">
-				<b>ZOBENZ</b>
-			</div>
-			<strong>Copyright &copy; 2015 <a target="_blank" href="http://zobenz.com">zobenz.com</a>.
-			</strong> All rights reserved.
-		</footer>
-		<div class="control-sidebar-bg"></div>
-	</div>
+
 	<script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
 	<script src="bootstrap/js/jquery-ui.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
