@@ -1,5 +1,5 @@
 <?php
-define("SQL_DSN", 'mysql:dbname=zobenz_db;host=localhost');
+define("SQL_DSN", 'mysql:dbname=shop_online;host=localhost');
 define("SQL_USERNAME", 'root');
 define("SQL_PASSWORD", '');
 
@@ -14,7 +14,7 @@ class DBConnection extends PDO {
 			
 			try {
 			
-				self::$_instance = new PDO(SQL_DSN, SQL_USERNAME, SQL_PASSWORD);
+				self::$_instance = new PDO(SQL_DSN, SQL_USERNAME, SQL_PASSWORD, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 			
 			} catch (PDOException $e) {
 			

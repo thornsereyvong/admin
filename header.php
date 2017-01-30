@@ -12,7 +12,7 @@ include_once 'check_account.php';
 <header class="main-header">
 	<a href="<?php echo $server; ?>" class="logo">
 		<span class="logo-mini"><b><img alt="" src="img/favicon.png"></b></span>
-		<span class="logo-lg"><b>ZOBENZ</b></span>
+		<span class="logo-lg"><b>KTS</b></span>
 	</a>
 	<nav class="navbar navbar-static-top" role="navigation">
 		<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> 

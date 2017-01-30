@@ -57,11 +57,11 @@ RewriteCond %{QUERY_STRING} (sp_executesql) [NC]
 RewriteRule ^(.*)$ - [F,L]
 
 
-ErrorDocument 400 http://localhost/Z-Admin/404.php
-ErrorDocument 401 http://localhost/Z-Admin/404.php
-ErrorDocument 403 http://localhost/Z-Admin/404.php
-ErrorDocument 404 http://localhost/Z-Admin/404.php
-ErrorDocument 500 http://localhost/Z-Admin/404.php
+#ErrorDocument 400 http://localhost/Z-Admin/404.php
+#ErrorDocument 401 http://localhost/Z-Admin/404.php
+#ErrorDocument 403 http://localhost/Z-Admin/404.php
+#ErrorDocument 404 http://localhost/Z-Admin/404.php
+#ErrorDocument 500 http://localhost/Z-Admin/404.php
 
 
 
@@ -107,3 +107,33 @@ RewriteRule ^controller-status-article$ controller/article/status-article_contro
 
 
 # End General Ledger ---------------------------------------------------------------------------------------------------------------
+
+
+
+# promotion --------------------------------------------------------------------------------------------------------------
+	
+RewriteRule ^promotion$ promotion.php
+RewriteRule ^controller-create-promotion$ controller/promotion/insert_controller.php
+RewriteRule ^controller-list-promotion$ controller/promotion/list_controller.php
+RewriteRule ^controller-edit-promotion$ controller/promotion/edit_controller.php
+RewriteRule ^controller-delete-promotion$ controller/promotion/delete_controller.php
+
+
+
+RewriteRule ^slideshow$ slideshow.php
+RewriteRule ^controller-create-slideshow$ controller/slideshow/insert_controller.php
+RewriteRule ^controller-list-slideshow$ controller/slideshow/list_controller.php
+RewriteRule ^controller-edit-slideshow$ controller/slideshow/edit_controller.php
+RewriteRule ^controller-delete-slideshow$ controller/slideshow/delete_controller.php
+
+
+RewriteRule ^item$ item_list.php
+RewriteRule ^controller-create-item$ controller/item/insert_controller.php
+RewriteRule ^controller-list-item$ controller/item/list_controller.php
+RewriteRule ^controller-edit-item$ controller/item/edit_controller.php
+RewriteRule ^controller-delete-item$ controller/item/delete_controller.php
+
+
+
+
+

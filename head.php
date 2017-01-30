@@ -4,35 +4,55 @@
  * file: head.php
  * @autor: Thorn sereyvong
  * @date: 24-03-2016
- * ZOBENZ TEAM
+ * KTS TEAM
  * *****************************************************************************
  */ 
-	include_once 'app.php';
+	
 ?>
 
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title><?php echo $title; ?> | ZOBENZ</title> 
+	<title><?php echo $title; ?> | KTS</title> 
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="shortcut icon" href="img/favicon.png">
+	<link rel="shortcut icon" href="<?php echo $server; ?>img/favicon.png">
 	
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="bootstrap/css/font-awesome.min.css">
-	<link rel="stylesheet" href="bootstrap/css/ionicons.min.css">
-	<link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
-	<link rel="stylesheet" href="plugins/daterangepicker/daterangepicker-bs3.css">
-	<link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-	<link rel="stylesheet" href="plugins/daterangepicker/daterangepicker-bs3.css">
-	<link rel="stylesheet" href="plugins/iCheck/all.css">
-	<link rel="stylesheet" href="plugins/colorpicker/bootstrap-colorpicker.min.css">
-	<link rel="stylesheet" href="plugins/timepicker/bootstrap-timepicker.min.css">
-	<link rel="stylesheet" href="plugins/select2/select2.min.css">
-	<link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-	<link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
-	<link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
-	<link rel="stylesheet" href="plugins/morris/morris.css">
-	<link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
-	<link rel="stylesheet" href="bootstrap/css/my-style.css">
-	<!-- <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css"> -->
+	<link rel="stylesheet" href="<?php echo $server; ?>bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php echo $server; ?>bootstrap/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<?php echo $server; ?>bootstrap/css/ionicons.min.css">
+	<link rel="stylesheet" href="<?php echo $server; ?>plugins/datepicker/datepicker3.css">
+	<link rel="stylesheet" href="<?php echo $server; ?>plugins/daterangepicker/daterangepicker-bs3.css">
+	<link rel="stylesheet" href="<?php echo $server; ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+	<link rel="stylesheet" href="<?php echo $server; ?>plugins/daterangepicker/daterangepicker-bs3.css">
+	<link rel="stylesheet" href="<?php echo $server; ?>plugins/iCheck/all.css">
+	<link rel="stylesheet" href="<?php echo $server; ?>plugins/colorpicker/bootstrap-colorpicker.min.css">
+	<link rel="stylesheet" href="<?php echo $server; ?>plugins/timepicker/bootstrap-timepicker.min.css">
+	<link rel="stylesheet" href="<?php echo $server; ?>plugins/select2/select2.min.css">
+	<link rel="stylesheet" href="<?php echo $server; ?>dist/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="<?php echo $server; ?>dist/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="<?php echo $server; ?>plugins/iCheck/flat/blue.css">
+	<link rel="stylesheet" href="<?php echo $server; ?>plugins/morris/morris.css">
+	<link rel="stylesheet" href="<?php echo $server; ?>plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+	<link rel="stylesheet" href="<?php echo $server; ?>bootstrap/css/my-style.css">
+
 	
+	<link rel="stylesheet" href="<?php echo $server; ?>angular/css/angular-material.css">
+	<link rel="stylesheet" href="<?php echo $server; ?>angular/css/loading-bar.css">
+	<link rel="stylesheet" href="<?php echo $server; ?>dist/sweetalert/sweetalert.css">
+	 	  	   	 
+  	<script src="<?php echo $server; ?>plugins/jQuery/jQuery-2.1.4.min.js"></script>
+	<script src="<?php echo $server; ?>bootstrap/js/jquery-ui.min.js"></script>
 	
+	<script src="<?php echo $server; ?>angular/angular.min.js"></script>
+	<script src="<?php echo $server; ?>angular/angular-material.min.js"></script>
+	<script src="<?php echo $server; ?>angular/angular-animate.min.js"></script>
+	<script src="<?php echo $server; ?>angular/loading-bar.js"></script>
+	<script src="<?php echo $server; ?>angular/angular-aria.min.js"></script>
+	<script src="<?php echo $server; ?>angular/angular-messages.min.js"></script>
+	<script src="<?php echo $server; ?>angular/dirPagination.js"></script>
+	
+	<style>
+		.requrie{
+			color: #dd4b39;
+		}
+	</style>
+  	

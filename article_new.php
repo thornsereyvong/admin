@@ -49,8 +49,7 @@ include_once 'slidebar.php';
 							</div>
 						</div>
 						<!-- Start Form -->
-						<div class="col-md-9 col-sm-12">
-			
+						<div class="col-md-9 col-sm-12">			
 							<div class="box box-solid">
 								<div class="box-header with-border">
 									<i class="fa fa-info-circle"></i>

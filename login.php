@@ -4,27 +4,14 @@
  * file: login.php
  * @autor: Thorn sereyvong
  * @date: 24-03-2016
- * ZOBENZ TEAM
+ * KTS TEAM
  * *****************************************************************************
  */
 ?>
 <?php
 
-$title = "LOGIN ACCOUNT";
+	$title = "LOGIN ACCOUNT";
 
-/* $data = array();
-$data['username'] = "sereyvong";
-$data['fullname'] = "sereyvong thorn";
-$data['password'] = "111";
-$data['email'] = "sereyvong98@gmail.com";
-$data['role'] = "admin";
-$data['type'] = "Author";
-$data['img'] = "";
-$data['Description'] = "";
-
-
-$user->register($data);
- */
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +22,9 @@ $user->register($data);
 	<body>
 
 	<div class="container">
+	<br>
 		<div class="row">
+			
 			<div class="col-sm-3 "></div>
 			<div class="col-sm-6">
 				<div class="panel panel-default">
@@ -46,29 +35,29 @@ $user->register($data);
 						<!-- /.login-logo -->
 						<div class="login-box-body">
 							<p class="login-box-msg text-center"></p>
-							<p class="" id="inv" style="color: #dd4b39; display: none;">*Email
-								and Password invalid.</p>
+							<p class="" id="inv" style="color: #dd4b39; display: none;">*USERNAME
+								and PASSWORD invalid.</p>
 							<div id="load"></div>
 							<form id="frmSignIn" action="" method="post"
 								novalidate="novalidate" class="bv-form">
 								<button type="submit" class="bv-hidden-submit"
 									style="display: none; width: 0px; height: 0px;"></button>
 								<div class="form-group">
-									<input type="text" name="email" value="" id="email"
-										class="form-control" placeholder="Email" data-bv-field="email">
+									<input type="text" name="kts_username" value="" id="kts_username"
+										class="form-control" placeholder="USERNAME" data-bv-field="kts_username">
 		
 									<small class="help-block" data-bv-validator="regexp"
-										data-bv-for="email" data-bv-result="NOT_VALIDATED"
-										style="display: none;">The value is not a valid email address</small><small
+										data-bv-for="kts_username" data-bv-result="NOT_VALIDATED"
+										style="display: none;">The value is not a valid username address</small><small
 										class="help-block" data-bv-validator="notEmpty"
-										data-bv-for="email" data-bv-result="NOT_VALIDATED"
-										style="display: none;">The email is required and cannot be empty</small>
+										data-bv-for="kts_username" data-bv-result="NOT_VALIDATED"
+										style="display: none;">The username is required and cannot be empty</small>
 								</div>
 								<div class="form-group">
-									<input type="password" value="" name="password" id="password"
-										class="form-control" placeholder="Password"
-										data-bv-field="password"> <small class="help-block"
-										data-bv-validator="notEmpty" data-bv-for="password"
+									<input type="password" value="" name="kts_password" id="kts_password"
+										class="form-control" placeholder="PASSWORD"
+										data-bv-field="kts_password"> <small class="help-block"
+										data-bv-validator="notEmpty" data-bv-for="kts_password"
 										data-bv-result="NOT_VALIDATED" style="display: none;">The
 										password is required and cannot be empty</small>
 								</div>
@@ -78,7 +67,7 @@ $user->register($data);
 		
 							</form>
 							<div class="clearfix"></div>
-							<a href="#">I forgot my password.</a><br> 
+							<!-- <a href="#">I forgot my password.</a><br>  -->
 						</div>
 						<!-- /.login-box-body -->
 					</div>
@@ -87,7 +76,7 @@ $user->register($data);
 			</div>
 		</div>
 	</div>
-	<div id="d"></div>
+	<div id="errors"></div>
 	<script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
 	<script src="bootstrap/js/jquery-ui.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
@@ -97,7 +86,7 @@ $user->register($data);
 	<script type="text/javascript">
 		function error(){
 			$("#inv").show();
-			$("#email").parent().removeClass("has-success").addClass("has-error");
+			$("#kts_username").parent().removeClass("has-success").addClass("has-error");
 			$("#password").parent().removeClass("has-success").addClass("has-error");
 		}
 	
@@ -113,18 +102,15 @@ $user->register($data);
 					validating: 'glyphicon glyphicon-refresh'
 				},
 				fields: {
-					email: {
+					kts_username: {
 	                    validators: {// check password is exist or not
-	                    	regexp: {
-	                            regexp: '^[^@\\s]+@([^@\\s]+\\.)+[^@\\s]+$',
-	                            message: 'The value is not a valid email address'
-	                        },
+	                    	
 							notEmpty: {
-								message: 'The email is required and cannot be empty'
+								message: 'The username is required and cannot be empty'
 							}
 						}                    
 					},
-					password: {
+					kts_password: {
 						validators: {// check password is exist or not
 							notEmpty: {
 								message: 'The password is required and cannot be empty'
@@ -138,9 +124,10 @@ $user->register($data);
 					url: "login-controller",
 					method: "POST",
 					data: {
-						email : $.trim($("#email").val()),
-						password : $.trim($("#password").val())
+						kts_username : $.trim($("#kts_username").val()),
+						kts_password : $.trim($("#kts_password").val())
 					},success: function(data){
+
 						if(data=="success"){
 							window.location.href="<?php  echo $server;?>dashboard";
 						}else{

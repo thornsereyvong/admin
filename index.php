@@ -4,7 +4,7 @@
  * file: index.php
  * @autor: Thorn sereyvong
  * @date: 08-09-2015
- * ZOBENZ TEAM
+ * KTS TEAM
  * *****************************************************************************
  */
 include_once 'app.php';

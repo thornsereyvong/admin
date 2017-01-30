@@ -4,7 +4,7 @@
  * file: app.php
  * @autor: Thorn sereyvong
  * @date: 24-03-2016
- * ZOBENZ TEAM
+ * KTS TEAM
  * *****************************************************************************
  */
 
@@ -30,6 +30,6 @@
 	include_once 'Model/user/User.DAO.php';
 	
 	
-	$server = "http://localhost/Z-Admin/";
+	$server = "http://localhost/shop-online/KTS_ADMIN/";
 	
 ?>

@@ -1,22 +1,22 @@
 <?php
 	class User{
-		public function login($email,$password){
+		public function login($username,$password){
 			try{
 				session_start();
 				$dbh = DBConnection::getInstance();
 				$sql = "
-						 SELECT * FROM z_users WHERE Email = :email AND Password = :password; 
+						 SELECT * FROM config_user WHERE var_id = :userId AND var_pwd = :password; 
 					   ";	
-				$password = (new Cryption())->IMD5($password);
+				//$password = (new Cryption())->IMD5($password);
 				$req = $dbh->prepare($sql);
-				$req->bindParam(":email", $email);
+				$req->bindParam(":userId", $username);
 				$req->bindParam(":password", $password);
 				$req->execute();
 				if($req->rowCount() != 0){
 					$rows = $req->fetch(PDO::FETCH_ASSOC);
-					$_SESSION['ZOBENZ_USERID'] = $rows['UserID'];
-					$_SESSION['ZOBENZ_USER'] = $rows['Username'];
-					$_SESSION['ZOBENZ_USER_ROLE'] = $rows['Role'];
+					$_SESSION['ZOBENZ_USERID'] = $rows['var_id'];
+					$_SESSION['ZOBENZ_USER'] = $rows['var_name'];
+					$_SESSION['ZOBENZ_USER_ROLE'] = $rows['var_type'];
 					echo "success";
 				}else{
 					echo "Error";

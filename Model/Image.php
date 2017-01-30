@@ -50,9 +50,9 @@
 			$allowedTypes = array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF);
 			$detectedType = exif_imagetype($files['tmp_name']);
 			if(!in_array($detectedType, $allowedTypes)){
-				$msg = 'wrong type';
+				return false;
 			}else if($file_size > 5242880){
-				$msg = 'File upload under 5MB';
+				return false;
 			}else if(empty($errors)){
 				$new_name = $this->cur_time.'.'.$file_ext;
 				$path = $p.'/'.$new_name;
@@ -60,7 +60,7 @@
 					$save = $p.'/thumb/'.$new_name;
 					$this->createthum($path,$save,300,300);
 					if($this->insertImage($new_name,$type,$save)){
-						return true;
+						return $new_name;
 					}
 					return false;
 				}				
